@@ -1,62 +1,51 @@
 ﻿<?php
 class Request
 {
-    private $host;
     private $controller;
     private $action;
-    private $params;
-    function __constuct()
+    private $params = array();
+
+    function __construct()
     {
-        $url = explode("/",$_SERVER['REQUEST_URI']);
-        if(!empty($url[0]))
-        {
-            $this->host = $url[0];
-        }
-        if(!empty($url[1]))
-        {
-            $this->controller = $url[1];
-        }
-        if(!empty($url[2]))
-        {
-            $this->action = $url[2];
-        }
-        if(!empty($url[3]))
-        {
-            $this->action = $url[2];
-        }
-        $this->params = $_REQUEST;
-
-        //дописать: должен разбить данный на хост, контроллер и возвращать их чере get
-        //написать две функции getParams( должен вывести на экран $params)
-
-        //конструктор
-        // getGetParam( получать параметры по ключу, который возвращает либо null либо ошибку
-        //getPostParam
-
+        $url = $_SERVER["REQUEST_URI"];
+        $exploded_url = explode('/', $url);
+        if(isset($exploded_url[1]))
+            $this->controller = $exploded_url[1];
+        if(isset($exploded_url[2]))
+            $this->action = $exploded_url[2];
+        for($i = 4; $i < sizeof($exploded_url); $i++)
+            if($exploded_url[$i] )
+                $this->params["GET"][] = $exploded_url[$i];
     }
-    public function  getParams($key)
+    function getGetParams()
     {
-        if(!empty($this->params[$key]))
-        return $this->params[$key];
+        return $this->params["GET"];
     }
-
-    public  function getController()
+    function getPostParams()
     {
-        return $this->controller;
+        if(!isset($this->params["POST"]))
+        {
+            $this->params["POST"] = array();
+            $this->params["POST"] = $_POST;
+        }
+        return($this->params["POST"]);
     }
-
-    public  function getAction()
+    function getParams()
+    {
+        return $this->params;
+    }
+    function getParam($i)
+    {
+        return $this->params["GET"][$i];
+    }
+    function getAction()
     {
         return $this->action;
     }
-     /*function  getGetParam($id)
-     {
-         return $this->params['get'][$id];
-     }*/
-
+    function getController()
+    {
+        return $this->controller;
+    }
+    //напсать getParam и getParams
 }
 ?>
-
-
-
-

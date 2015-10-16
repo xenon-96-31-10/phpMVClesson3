@@ -19,7 +19,7 @@ class FrontController{
         {
             if(file_exists($value))
             {
-                var_dump("asdasd");
+                //var_dump("asdasd");
                 continue;
             }
             else
@@ -39,7 +39,8 @@ class FrontController{
         require_once("C:\\xampp\\htdocs\\lesson3\\src\\core\\classes\\Routing.php");
         var_dump("gtyftyftftf");
         $request = new Request();
-        var_dump($request);
+        var_dump($request->getController());
+
         Routing::run($request);
 
     }

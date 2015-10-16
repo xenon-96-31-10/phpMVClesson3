@@ -6,7 +6,7 @@ class Routing{
 
         $nameController = $request->getController() . "Controller";
         $action = $request->getAction() . "Action";
-        $filePath = "\\src\\controller\\" . $nameController . ".php";
+        $filePath = "src\\controller\\" . $nameController . ".php";
         var_dump($filePath);
         $className = $nameController;
         if(file_exists($filePath)){
@@ -16,10 +16,10 @@ class Routing{
                 if(method_exists($controller, $action)){
                     call_user_func(array($controller, $action));
                 }else{
-                    var_dump("Не существеует экшена" . $action);
+                    var_dump("Action doesn't exist " . $action);
                 }
             } else{
-                var_dump("Структура сайта не соотвествует фреймоврку");
+                var_dump("Site map doesn't correspond to framefork");
             }
 
         }else {
