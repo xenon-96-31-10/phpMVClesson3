@@ -4,7 +4,7 @@ class FrontController{
 
     function bootstrapt()
     {
-        include("\\src\\core\\classes\\Config.php");
+        //include("\\src\\core\\classes\\Config.php");
         $Config = new Config();
         $admin = $Config->getParam('admin');
         $password = $Config->getParam('password');
@@ -35,8 +35,8 @@ class FrontController{
 
     function handlerRequest()
     {
-        require_once("C:\\xampp\\htdocs\\lesson3\\src\\core\\classes\\Request.php");
-        require_once("C:\\xampp\\htdocs\\lesson3\\src\\core\\classes\\Routing.php");
+        //require_once("C:\\xampp\\htdocs\\lesson3\\src\\core\\classes\\Request.php");
+        //require_once("C:\\xampp\\htdocs\\lesson3\\src\\core\\classes\\Routing.php");
         var_dump("gtyftyftftf");
         $request = new Request();
         var_dump($request->getController());
